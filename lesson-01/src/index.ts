@@ -5,10 +5,18 @@ import {
   PublicKey,
   SystemProgram,
   Transaction,
+  TransactionInstruction,
   clusterApiUrl,
   sendAndConfirmTransaction,
 } from '@solana/web3.js';
 import 'dotenv/config';
+
+const PING_PROGRAM_ADDRESS = new PublicKey(
+  'ChT1B39WKLS8qUrkLvFDXMhEJ4F1XZzwUNHUt4AU9aVa'
+);
+const PING_PROGRAM_DATA_ADDRESS = new PublicKey(
+  'Ah9K7dQ8EHaZqcAsgBW8w37yN2eAy3koFmUn4x3CJtod'
+);
 
 const keypair1 = getKeypairFromEnvironment('SECRET_KEY');
 console.log(keypair1.publicKey.toBase58());
@@ -18,23 +26,25 @@ const address = new PublicKey('GteaL8FV2uLrdARiH4SK3y3EkDnnmcMe9rxasZSvA6vD');
 
 (async () => {
   const transaction = new Transaction();
+  const programId = new PublicKey(PING_PROGRAM_ADDRESS);
+  const pingProgramDataId = new PublicKey(PING_PROGRAM_DATA_ADDRESS);
 
-  const sendSOLInstruction = SystemProgram.transfer({
-    fromPubkey: keypair1.publicKey,
-    toPubkey: new PublicKey('CeYv5PsCftUeXgTEq1A6HGYUENfzboB5uPCeRanfFH8u'),
-    lamports: LAMPORTS_PER_SOL * 1,
+  const instruction = new TransactionInstruction({
+    keys: [
+      {
+        pubkey: pingProgramDataId,
+        isSigner: false,
+        isWritable: true,
+      },
+    ],
+    programId,
   });
 
-  transaction.add(sendSOLInstruction);
+  transaction.add(instruction);
 
-  const signature = sendAndConfirmTransaction(connection, transaction, [
+  const signature = await sendAndConfirmTransaction(connection, transaction, [
     keypair1,
   ]);
 
-  console.log(`https://api.explorer.solana.com/${signature}?cluster=devnet`);
-
-  const balance = await connection.getBalance(address);
-  console.log(
-    `The balance of the account ${address} is ${balance / LAMPORTS_PER_SOL}`
-  );
+  console.log(`✅ Transaction completed! Signature is ${signature}`);
 })();
