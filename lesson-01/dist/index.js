@@ -17,6 +17,17 @@ console.log(keypair1.publicKey.toBase58());
 const connection = new web3_js_1.Connection((0, web3_js_1.clusterApiUrl)('devnet'));
 const address = new web3_js_1.PublicKey('GteaL8FV2uLrdARiH4SK3y3EkDnnmcMe9rxasZSvA6vD');
 (() => __awaiter(void 0, void 0, void 0, function* () {
+    //   const transaction = new Transaction();
+    //   const sendSOLInstruction = SystemProgram.transfer({
+    //     fromPubkey: keypair1.publicKey,
+    //     toPubkey: new PublicKey('CeYv5PsCftUeXgTEq1A6HGYUENfzboB5uPCeRanfFH8u'),
+    //     lamports: LAMPORTS_PER_SOL * 1,
+    //   });
+    //   transaction.add(sendSOLInstruction);
+    //   const signature = sendAndConfirmTransaction(connection, transaction, [
+    //     keypair1,
+    //   ]);
+    //   console.log(`https://api.explorer.solana.com/${signature}?cluster=devnet`);
     const balance = yield connection.getBalance(address);
     console.log(`The balance of the account ${address} is ${balance / web3_js_1.LAMPORTS_PER_SOL}`);
 }))();
