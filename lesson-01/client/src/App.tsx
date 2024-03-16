@@ -10,6 +10,7 @@ import {
   WalletMultiButton,
 } from '@solana/wallet-adapter-react-ui';
 import '@solana/wallet-adapter-react-ui/styles.css';
+import Movie from './components/Movie';
 import Balance from './components/Balance';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <WalletModalProvider>
             <WalletMultiButton />
             <Balance />
+            <Movie />
           </WalletModalProvider>
         </WalletProvider>
       </ConnectionProvider>
