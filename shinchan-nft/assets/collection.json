@@ -1,0 +1,15 @@
+{
+  "name": "Shinchan Collection",
+  "symbol": "SHINCHAN",
+  "description": "Shinchan collection with various jobs done by shinchan",
+  "image": "collection.png",
+  "attributes": [],
+  "properties": {
+    "files": [
+      {
+        "uri": "collection.png",
+        "type": "images/png"
+      }
+    ]
+  }
+}

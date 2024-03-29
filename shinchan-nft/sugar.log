@@ -1,0 +1,3 @@
+{"v":0,"name":"sugar","msg":"Lend me some sugar, I am your neighbor.","level":30,"hostname":"Taruns-MacBook-Air.local","pid":63864,"time":"2024-03-28T12:48:26.858363Z","target":"sugar","line":123,"file":"src/main.rs"}
+{"v":0,"name":"sugar","msg":"MissingFileError(\"config.json\")","level":50,"hostname":"Taruns-MacBook-Air.local","pid":63129,"time":"2024-03-28T12:45:36.632121Z","target":"sugar_cli::config::parser","line":21,"file":"src/config/parser.rs"}
+{"v":0,"name":"sugar","msg":"Assets directory is missing or empty.","level":30,"hostname":"Taruns-MacBook-Air.local","pid":63129,"time":"2024-03-28T12:46:52.298537Z","target":"sugar_cli::validate::process","line":33,"file":"src/validate/process.rs"}
