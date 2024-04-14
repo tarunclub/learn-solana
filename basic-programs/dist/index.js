@@ -20,6 +20,18 @@ const keypair = (0, helpers_1.getKeypairFromEnvironment)("SECRET_KEY");
 const connection = new web3_js_1.Connection((0, web3_js_1.clusterApiUrl)("devnet"));
 const address = new web3_js_1.PublicKey(keypair.publicKey);
 (() => __awaiter(void 0, void 0, void 0, function* () {
+    const transaction = new web3_js_1.Transaction();
+    const sendSolTransaction = web3_js_1.SystemProgram.transfer({
+        fromPubkey: keypair.publicKey,
+        toPubkey: new web3_js_1.PublicKey("CeYv5PsCftUeXgTEq1A6HGYUENfzboB5uPCeRanfFH8u"),
+        lamports: web3_js_1.LAMPORTS_PER_SOL * 1,
+    });
+    transaction.add(sendSolTransaction);
+    const signature = yield (0, web3_js_1.sendAndConfirmTransaction)(connection, transaction, [
+        keypair,
+    ]);
+    console.log(`${signature}`);
+    // console.log(`https://explorer.solana.com/?cluster=devnet/${signature.}`)
     const balance = yield connection.getBalance(address);
     console.log(`Balance of the account ${keypair.publicKey} is ${balance / web3_js_1.LAMPORTS_PER_SOL}`);
 }))();
